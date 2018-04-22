@@ -5,6 +5,47 @@
 </head>
 <body>
   <script>
+    function computerPlay() {
+        let compMove = Math.floor(Math.random() * 3);
+        if (compMove == 0) {
+            return 'Rock';
+        } else if (compMove == 1) {
+            return 'Paper';
+        }
+        return 'Scissors';
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        playerSelection = playerSelection.toLowerCase();
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+
+        if (playerSelection == "Rock") {
+            return (computerSelection == "Rock") ? draw() : 
+                    (computerSelection == "Paper") ? lose() : win();
+        } else if (playerSelection == "Paper") {
+            return (computerSelection == "Rock") ? win() : 
+                    (computerSelection == "Paper") ? draw() : lose();
+        } else if (playerSelection == "Scissors"){
+            return (computerSelection == "Rock") ? lose() : 
+                    (computerSelection == "Paper") ? win() : draw();
+        }
+    }
+
+    function draw() {
+        return "It's a Draw";
+    }
+
+    function win() {
+        return "You win!";
+    }
+
+    function lose() {
+        return "You lose";
+    }
+
+    const playerSelection = 'rock'
+    const computerSelection = computerPlay()
+    console.log(playRound(playerSelection, computerSelection), computerSelection)
   </script>
 </body>
 </html>
